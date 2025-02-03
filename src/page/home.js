@@ -20,22 +20,24 @@ const testimonials = [
 ];
 
 const productImage = [
-    { id: 1, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20-25", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
-    { id: 3, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20-30", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
-    { id: 66, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20-30", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
-    { id: 4, img: "https://i.postimg.cc/K8PtYd1g/IMG-1573.avif", price: "$25-30", title: "Casual Wear", description: "Soft and breathable material.", categoryId: 3 },
-    { id: 5, img: "https://i.postimg.cc/Y9q6ZbqL/V-y-1.jpg", price: "$30-40", title: "Elegant Dress", description: "Perfect for special occasions.", categoryId: 2 },
-    { id: 77, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30-40", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
+    { id: 1, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
+    { id: 3, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
+    { id: 66, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
+    { id: 4, img: "https://i.postimg.cc/K8PtYd1g/IMG-1573.avif", price: "$25", title: "Casual Wear", description: "Soft and breathable material.", categoryId: 3 },
+    { id: 5, img: "https://i.postimg.cc/Y9q6ZbqL/V-y-1.jpg", price: "$30", title: "Elegant Dress", description: "Perfect for special occasions.", categoryId: 2 },
+    { id: 77, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
 ]
 
 const catalogImage = [
-    { img: "https://i.postimg.cc/5tjvmjP8/473280217-615921490982833-3812731787388686407-n-1.jpg", title: "", description: "" },
-    { img: "https://i.postimg.cc/4NT6TfdT/473291359-615923377649311-109066929642301688-n-1.jpg", title: "", description: "" },
-    { img: "https://i.postimg.cc/c4MQxpgt/473440296-615921714316144-4988172142196501829-n-1.jpg", title: "", description: "" },
-    { img: "https://i.postimg.cc/PfDWcpd4/473544276-615923320982650-5284757103463163757-n-1.jpg", title: "", description: "" },
-    { img: "https://i.postimg.cc/Dwv18xLj/473578713-615921780982804-3219815772634440892-n-1.jpg", title: "", description: "" },
-    { img: "https://i.postimg.cc/3xtmp2ZK/473621978-615921724316143-9026438741686592847-n-1.jpg", title: "", description: "" },
-]
+    { img: "https://i.postimg.cc/5tjvmjP8/473280217-615921490982833-3812731787388686407-n-1.jpg", title: "Cotton Fabric", description: "Soft, breathable, and perfect for casual wear and home textiles." },
+    { img: "https://i.postimg.cc/4NT6TfdT/473291359-615923377649311-109066929642301688-n-1.jpg", title: "Silk Fabric", description: "Luxurious and smooth, ideal for formal wear and evening gowns." },
+    { img: "https://i.postimg.cc/c4MQxpgt/473440296-615921714316144-4988172142196501829-n-1.jpg", title: "Denim Fabric", description: "Durable and timeless, perfect for jeans and jackets." },
+    { img: "https://i.postimg.cc/PfDWcpd4/473544276-615923320982650-5284757103463163757-n-1.jpg", title: "Linen Fabric", description: "Lightweight and breathable, great for summer wear and home décor." },
+    { img: "https://i.postimg.cc/Dwv18xLj/473578713-615921780982804-3219815772634440892-n-1.jpg", title: "Velvet Fabric", description: "Rich texture and depth, perfect for luxurious upholstery and evening outfits." },
+    { img: "https://i.postimg.cc/3xtmp2ZK/473621978-615921724316143-9026438741686592847-n-1.jpg", title: "Wool Fabric", description: "Warm, cozy, and ideal for winter clothing and outerwear." }
+];
+
+
 export default function Home() {
     return (
         <>
@@ -91,7 +93,7 @@ export default function Home() {
                         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style={{ "max-width": "700px" }}>
                             <h4
                                 class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">
-                                Our Events</h4>
+                                Our Catalog</h4>
                             <h1 class="mb-5 display-3">Catalog</h1>
                         </div>
                         <div class="row g-5 justify-content-center">
@@ -113,9 +115,8 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom">
-                                            <a href="#" class="h4">Music & drawing workshop</a>
-                                            <p class="mb-0 mt-3">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed
-                                                purus consectetur,</p>
+                                            <a href="#" class="h4">{item.title}</a>
+                                            <p class="mb-0 mt-3">{item.description}.</p>
                                         </div>
                                     </div>
                                 </div>
@@ -124,7 +125,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div class="container-fluid blog py-5">
+                {/* <div class="container-fluid blog py-5">
                     <div class="container py-5">
                         <div class="mx-auto text-center wow fadeIn" data-wow-delay="0.1s" style={{ "max-width": "600px" }}>
                             <h4
@@ -258,7 +259,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="container-fluid testimonial py-5">
                     <div className="container py-5">
                         <div
@@ -269,7 +270,7 @@ export default function Home() {
                             <h4 className="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">
                                 Our Testimonials
                             </h4>
-                            <h1 className="mb-5 display-3">Parents Say About Us</h1>
+                            <h1 className="mb-5 display-3">Cusromers say about us</h1>
                         </div>
 
                         {/* Swiper Carousel */}

@@ -11,15 +11,15 @@ const ProductList = () => {
 
     // Sản phẩm chia theo danh mục
     const products = [
-        { id: 1, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20-25", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
-        { id: 25, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20-25", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
-        { id: 11, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20-25", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
-        { id: 3, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20-30", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
-        { id: 66, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20-30", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
-        { id: 4, img: "https://i.postimg.cc/K8PtYd1g/IMG-1573.avif", price: "$25-30", title: "Casual Wear", description: "Soft and breathable material.", categoryId: 3 },
-        { id: 5, img: "https://i.postimg.cc/Y9q6ZbqL/V-y-1.jpg", price: "$30-40", title: "Elegant Dress", description: "Perfect for special occasions.", categoryId: 2 },
-        { id: 6, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30-40", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
-        { id: 77, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30-40", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
+        { id: 1, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
+        { id: 25, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
+        { id: 11, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
+        { id: 3, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
+        { id: 66, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
+        { id: 4, img: "https://i.postimg.cc/K8PtYd1g/IMG-1573.avif", price: "$25", title: "Casual Wear", description: "Soft and breathable material.", categoryId: 3 },
+        { id: 5, img: "https://i.postimg.cc/Y9q6ZbqL/V-y-1.jpg", price: "$30", title: "Elegant Dress", description: "Perfect for special occasions.", categoryId: 2 },
+        { id: 6, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
+        { id: 77, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
     ];
 
     return (
