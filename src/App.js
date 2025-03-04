@@ -27,17 +27,16 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products/:id" element={<ProductDetail />} />
-        {/* Kiểm tra admin trước khi cho vào trang Admin */}
+        {/* Trang admin được bảo vệ bởi ProtectedRoute */}
         <Route path="/admin" element={<ProtectedRoute element={<AdminHomePage />} />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/faq" element={<Faq />} />
-        <Route path="/login" element={<ProtectedRoute element={<Login />} />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
   );
 }
-
 
 export default App;
