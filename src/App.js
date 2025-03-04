@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Home from './page/home';
 import Header from './component/header';
 import Footer from './component/footer';
@@ -7,6 +7,17 @@ import NotFound from './page/notFound';
 import AdminHomePage from './page/admin/homeAdmin';
 import Faq from './page/faq';
 import ProductDetail from './page/productDetail';
+import Login from './page/admin/login';
+
+// Component ProtectedRoute để bảo vệ các tuyến đường
+const ProtectedRoute = ({ element }) => {
+  const user = localStorage.getItem("user");
+  const token = localStorage.getItem("token");
+  const admin = localStorage.getItem("admin"); // Lấy quyền admin từ localStorage
+
+  // Chỉ cho phép truy cập nếu có user, token và admin === "true"
+  return user && token && admin === "true" ? element : <Navigate to="/login" replace />;
+};
 
 
 function App() {
@@ -15,16 +26,18 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Home />} />
-        {/* {/* <Route path="/admin-home" element={<AdminHomePage />} /> 
-        <Route path="/blogs" element={<BlogList />} />*/}
-        <Route path="/products/:id" element={<ProductDetail />} /> {/* Đường dẫn chi tiết sản phẩm */}
+        <Route path="/products/:id" element={<ProductDetail />} />
+        {/* Kiểm tra admin trước khi cho vào trang Admin */}
+        <Route path="/admin" element={<ProtectedRoute element={<AdminHomePage />} />} />
         <Route path="/products" element={<ProductList />} />
         <Route path="/faq" element={<Faq />} />
+        <Route path="/login" element={<ProtectedRoute element={<Login />} />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
       <Footer />
     </Router>
   );
 }
+
 
 export default App;

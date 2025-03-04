@@ -1,12 +1,16 @@
-import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 export default function Header() {
     const userInfo = useSelector((state) => state.user);
     const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const admin = localStorage.getItem('admin');
+    const isLoggedIn = token && token !== 'null' && token.trim() !== '';
+    console.log(isLoggedIn)
     const handleLogout = () => {
-        localStorage.removeItem('access_token');
-        localStorage.removeItem('refresh_token');
+        localStorage.removeItem('user');
+        localStorage.removeItem('token');
         navigate('/home');
     };
     return (
@@ -26,6 +30,36 @@ export default function Header() {
                         <a href="https://www.instagram.com/peptelegance/profilecard/"
                             class="btn btn-light btn-sm-square rounded-circle"><i
                                 class="fab fa-instagram text-secondary"></i></a>
+                        {admin === "true" && (
+                            isLoggedIn ? (
+                                <>
+                                    <Link
+                                        to="/admin"
+                                        className="btn btn-light btn-sm-square rounded-circle me-2"
+                                        title="Admin"
+                                    >
+                                        <i className="fas fa-user-cog text-secondary"></i> {/* Icon Admin */}
+                                    </Link>
+                                    <Link
+                                        to="/"
+                                        className="btn btn-light btn-sm-square rounded-circle"
+                                        title="Logout"
+                                        onClick={handleLogout}
+                                    >
+                                        <i className="fas fa-sign-out-alt text-secondary"></i> {/* Icon Logout */}
+                                    </Link>
+                                </>
+                            ) : (
+                                <Link
+                                    to="/login"
+                                    className="btn btn-light btn-sm-square rounded-circle"
+                                    title="Login"
+                                >
+                                    <i className="fas fa-user text-secondary"></i> {/* Icon Login */}
+                                </Link>
+                            )
+                        )}
+
                     </div>
                 </div>
             </div>

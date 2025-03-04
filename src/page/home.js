@@ -1,12 +1,16 @@
 
-import React from 'react';
+
+import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchProducts } from '../redux/slices/product';
+import { fetchCategories } from '../redux/slices/category';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { Link } from 'react-router-dom';
-
+import { fetchCatalogs } from '../redux/slices/catalog';
 const testimonials = [
     {
         img: "https://i.postimg.cc/hGJzd6jr/IMG-2719.jpg",
@@ -19,26 +23,19 @@ const testimonials = [
     },
 ];
 
-const productImage = [
-    { id: 1, img: "https://i.postimg.cc/d09R5zvK/boy-romper-2.jpg", price: "$20", title: "Boy Romper 2", description: "Comfortable and stylish romper.", categoryId: 1 },
-    { id: 3, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
-    { id: 66, img: "https://i.postimg.cc/d0JrZ4CN/IMG-1555.avif", price: "$20", title: "Stylish Outfit", description: "Trendy and lightweight fabric.", categoryId: 3 },
-    { id: 4, img: "https://i.postimg.cc/K8PtYd1g/IMG-1573.avif", price: "$25", title: "Casual Wear", description: "Soft and breathable material.", categoryId: 3 },
-    { id: 5, img: "https://i.postimg.cc/Y9q6ZbqL/V-y-1.jpg", price: "$30", title: "Elegant Dress", description: "Perfect for special occasions.", categoryId: 2 },
-    { id: 77, img: "https://i.postimg.cc/tJ8F1bdF/V-y-2.avif", price: "$30", title: "Modern Look", description: "Fashionable and durable.", categoryId: 2 },
-]
-
-const catalogImage = [
-    { img: "https://i.postimg.cc/5tjvmjP8/473280217-615921490982833-3812731787388686407-n-1.jpg", title: "Cotton Fabric", description: "Soft, breathable, and perfect for casual wear and home textiles." },
-    { img: "https://i.postimg.cc/4NT6TfdT/473291359-615923377649311-109066929642301688-n-1.jpg", title: "Silk Fabric", description: "Luxurious and smooth, ideal for formal wear and evening gowns." },
-    { img: "https://i.postimg.cc/c4MQxpgt/473440296-615921714316144-4988172142196501829-n-1.jpg", title: "Denim Fabric", description: "Durable and timeless, perfect for jeans and jackets." },
-    { img: "https://i.postimg.cc/PfDWcpd4/473544276-615923320982650-5284757103463163757-n-1.jpg", title: "Linen Fabric", description: "Lightweight and breathable, great for summer wear and home décor." },
-    { img: "https://i.postimg.cc/Dwv18xLj/473578713-615921780982804-3219815772634440892-n-1.jpg", title: "Velvet Fabric", description: "Rich texture and depth, perfect for luxurious upholstery and evening outfits." },
-    { img: "https://i.postimg.cc/3xtmp2ZK/473621978-615921724316143-9026438741686592847-n-1.jpg", title: "Wool Fabric", description: "Warm, cozy, and ideal for winter clothing and outerwear." }
-];
-
 
 export default function Home() {
+    const dispatch = useDispatch();
+    const { items: payloadProducts, status, error } = useSelector((state) => state.products);
+    const { items: payloadCatalogs, status: catalogStatus, error: catalogError } = useSelector((state) => state.catalogs);
+
+    const products = payloadProducts.data;
+    console.log(payloadProducts)
+    const catalogs = payloadCatalogs.data;
+    useEffect(() => {
+        dispatch(fetchProducts(9)); 
+        dispatch(fetchCatalogs())
+    }, [dispatch]);
     return (
         <>
             <main>
@@ -64,19 +61,19 @@ export default function Home() {
                             <h1 class="mb-5 display-3">We Offer An Exclusive Product For Kids</h1>
                         </div>
                         <div class="row g-5 justify-content-center">
-                            {productImage.map((item, index) => (
+                            {products && products.length > 0 && products.map((item, index) => (
                                 <div className="col-md-6 col-lg-6 col-xl-4" key={index}>
                                     <div className="program-item rounded">
-                                        <Link to={`/products/${item.id}`}>
+                                        <Link to={`/products/${item._id}`}>
                                             <div className="program-img position-relative">
                                                 <div className="overflow-hidden">
-                                                    <img src={item.img} className="img-fluid w-100" alt="Product" />
+                                                    <img src={item.imageUrl} className="img-fluid w-100" alt="Product" />
                                                 </div>
-                                                <div className="px-4 py-2 bg-primary text-white program-rate">{item.price}</div>
+                                                <div className="px-4 py-2 bg-primary text-white program-rate">${item.price}</div>
                                             </div>
                                             <div className="program-text bg-white px-4 pb-3">
                                                 <div className="program-text-inner">
-                                                    <a href="#" className="h4">{item.title}</a>
+                                                    <a href="#" className="h4">{item.name}</a>
                                                     <p className="mt-3 mb-0">{item.description}</p>
                                                 </div>
                                             </div>
@@ -97,12 +94,12 @@ export default function Home() {
                             <h1 class="mb-5 display-3">Catalog</h1>
                         </div>
                         <div class="row g-5 justify-content-center">
-                            {catalogImage.map((item, index) => (
+                            {catalogs && catalogs.length > 0 && catalogs.map((item, index) => (
                                 <div class="col-md-6 col-lg-6 col-xl-4 wow fadeIn" data-wow-delay="0.1s">
                                     <div class="events-item bg-primary rounded">
                                         <div class="events-inner position-relative">
                                             <div class="events-img overflow-hidden position-relative">
-                                                <img src={item.img}
+                                                <img src={item.imageUrl}
                                                     class="img-fluid w-100 " alt="Image" />
                                                 <div class="event-overlay">
                                                     <a href=""
@@ -115,7 +112,7 @@ export default function Home() {
                                             </div>
                                         </div>
                                         <div class="events-text p-4 border border-primary bg-white border-top-0 rounded-bottom">
-                                            <a href="#" class="h4">{item.title}</a>
+                                            <a href="#" class="h4">{item.name}</a>
                                             <p class="mb-0 mt-3">{item.description}.</p>
                                         </div>
                                     </div>

@@ -1,15 +1,5 @@
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { loginUser } from '../redux/slices/user'
-import { useNavigate } from 'react-router-dom';
-
+import React from 'react';
 const Faq = () => {
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-
-
     return (
         <div>
             <header class="site-header section-padding d-flex justify-content-center align-items-center">
