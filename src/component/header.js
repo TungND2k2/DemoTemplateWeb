@@ -96,7 +96,9 @@ export default function Header() {
                             </div>
                             <div class="d-flex flex-column pe-3 border-end border-primary">
                                 <span class="text-primary">Have any questions?</span>
-                                <a href="#"><span class="text-secondary">Free: +84 877336320</span></a>
+                                <a href="https://wa.me/84877336320" target="_blank">
+                                    <span class="text-secondary">Free: +84 877336320</span>
+                                </a>
                             </div>
                         </div>
                     </div>
