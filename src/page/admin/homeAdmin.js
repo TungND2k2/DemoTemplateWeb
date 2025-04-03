@@ -51,7 +51,8 @@ const AdminPage = () => {
         idAdmin: "",
         description: "",
         price: 0,
-        imageUrl: "",
+        imageUrl: "", // Giữ lại trường này nếu API yêu cầu, nhưng dùng images làm chính
+        images: [], // Mảng ảnh mặc định rỗng
         stock: 0,
         idCategory: "",
         isActive: true,
@@ -208,7 +209,8 @@ const AdminPage = () => {
         idAdmin: "",
         description: "",
         price: 0,
-        imageUrl: "",
+        imageUrl: "", // Giữ lại trường này nếu API yêu cầu
+        images: [], // Mảng ảnh mặc định rỗng
         stock: 0,
         idCategory: "",
         isActive: true,
@@ -245,7 +247,7 @@ const AdminPage = () => {
         ...editItem,
         attributes: {
           ...editItem.attributes,
-          size: [...editItem.attributes.size, ""], // Thêm một phần tử rỗng
+          size: [...editItem.attributes.size, ""],
         },
       });
     };
@@ -255,6 +257,30 @@ const AdminPage = () => {
       setEditItem({
         ...editItem,
         attributes: { ...editItem.attributes, size: newSize },
+      });
+    };
+
+    const handleImageChange = (index, value) => {
+      const newImages = [...editItem.images];
+      newImages[index] = value;
+      setEditItem({
+        ...editItem,
+        images: newImages,
+      });
+    };
+
+    const handleAddImage = () => {
+      setEditItem({
+        ...editItem,
+        images: [...editItem.images, ""], // Thêm một URL rỗng
+      });
+    };
+
+    const handleRemoveImage = (index) => {
+      const newImages = editItem.images.filter((_, i) => i !== index);
+      setEditItem({
+        ...editItem,
+        images: newImages,
       });
     };
 
@@ -325,6 +351,43 @@ const AdminPage = () => {
               onClick={handleAddSize}
             >
               <i className="bi bi-plus"></i> Thêm Size
+            </button>
+          </div>
+        );
+      }
+      if (key === "images" && (Array.isArray(value) || isCreating)) {
+        return (
+          <div>
+            {value.map((image, index) => (
+              <div key={index} className="d-flex mb-2 align-items-center">
+                <input
+                  type="text"
+                  className="form-control me-2"
+                  value={image}
+                  onChange={(e) => handleImageChange(index, e.target.value)}
+                />
+                {image && (
+                  <img
+                    src={image}
+                    alt={`Image ${index + 1}`}
+                    style={{ width: "50px", height: "50px", marginRight: "10px" }}
+                  />
+                )}
+                <button
+                  type="button"
+                  className="btn btn-danger btn-sm"
+                  onClick={() => handleRemoveImage(index)}
+                >
+                  <i className="bi bi-trash"></i>
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className="btn btn-primary btn-sm mt-2"
+              onClick={handleAddImage}
+            >
+              <i className="bi bi-plus"></i> Thêm Ảnh
             </button>
           </div>
         );
