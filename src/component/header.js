@@ -11,7 +11,7 @@ export default function Header() {
     const handleLogout = () => {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
-        navigate('/home');
+        navigate('/home'); 
     };
     return (
         <div class="container-fluid border-bottom bg-light wow fadeIn" data-wow-delay="0.1s">

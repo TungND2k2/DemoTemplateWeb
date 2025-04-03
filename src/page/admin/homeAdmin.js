@@ -12,6 +12,7 @@ const AdminPage = () => {
   const [activeTab, setActiveTab] = useState("catalogs");
   const [editItem, setEditItem] = useState(null);
   const [isCreating, setIsCreating] = useState(false);
+
   const handleDelete = (item, type) => {
     if (window.confirm("Bạn có chắc chắn muốn xóa không?")) {
       switch (type) {
@@ -54,7 +55,7 @@ const AdminPage = () => {
         stock: 0,
         idCategory: "",
         isActive: true,
-        attributes: { material: "", size: [], availability: "", rating: 0 },
+        attributes: { material: "", size: ["3M", "6M", "9M", "12M"], availability: "", rating: 0 },
       },
       categories: {
         type,
@@ -73,7 +74,7 @@ const AdminPage = () => {
       },
     };
 
-    setEditItem(defaultValues[type]); // Khởi tạo với tất cả các trường mặc định
+    setEditItem(defaultValues[type]);
     setIsCreating(true);
   };
 
@@ -200,7 +201,6 @@ const AdminPage = () => {
 
     const excludedFields = ["_id", "type", "createdAt", "updatedAt", "owner"];
 
-    // Định nghĩa các trường cần hiển thị cho từng type
     const fieldTemplates = {
       products: {
         name: "",
@@ -212,7 +212,7 @@ const AdminPage = () => {
         stock: 0,
         idCategory: "",
         isActive: true,
-        attributes: { material: "", size: [], availability: "", rating: 0 },
+        attributes: { material: "", size: ["3M", "6M", "9M", "12M"], availability: "", rating: 0 },
       },
       categories: {
         title: "",
@@ -229,8 +229,34 @@ const AdminPage = () => {
       },
     };
 
-    // Đảm bảo tất cả các trường cần thiết được hiển thị, ngay cả khi chưa có trong editItem
     const fieldsToRender = { ...fieldTemplates[editItem.type], ...editItem };
+
+    const handleSizeChange = (index, value) => {
+      const newSize = [...editItem.attributes.size];
+      newSize[index] = value;
+      setEditItem({
+        ...editItem,
+        attributes: { ...editItem.attributes, size: newSize },
+      });
+    };
+
+    const handleAddSize = () => {
+      setEditItem({
+        ...editItem,
+        attributes: {
+          ...editItem.attributes,
+          size: [...editItem.attributes.size, ""], // Thêm một phần tử rỗng
+        },
+      });
+    };
+
+    const handleRemoveSize = (index) => {
+      const newSize = editItem.attributes.size.filter((_, i) => i !== index);
+      setEditItem({
+        ...editItem,
+        attributes: { ...editItem.attributes, size: newSize },
+      });
+    };
 
     const renderInput = (key, value, parentKey = "") => {
       const fullKey = parentKey ? `${parentKey}.${key}` : key;
@@ -275,12 +301,32 @@ const AdminPage = () => {
       }
       if (key === "size" && (Array.isArray(value) || isCreating)) {
         return (
-          <input
-            type="text"
-            className="form-control"
-            value={Array.isArray(value) ? value.join(", ") : ""}
-            onChange={(e) => setEditItem({ ...editItem, [fullKey]: e.target.value.split(", ") })}
-          />
+          <div>
+            {value.map((size, index) => (
+              <div key={index} className="d-flex mb-2 align-items-center">
+                <input
+                  type="text"
+                  className="form-control me-2"
+                  value={size}
+                  onChange={(e) => handleSizeChange(index, e.target.value)}
+                />
+                <button
+                  type="button"
+                  className="btn btn-danger btn-sm"
+                  onClick={() => handleRemoveSize(index)}
+                >
+                  <i className="bi bi-trash"></i>
+                </button>
+              </div>
+            ))}
+            <button
+              type="button"
+              className="btn btn-primary btn-sm mt-2"
+              onClick={handleAddSize}
+            >
+              <i className="bi bi-plus"></i> Thêm Size
+            </button>
+          </div>
         );
       }
       if (key === "description") {

@@ -77,7 +77,6 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-
                 {/* Product Section */}
                 <div className="container-fluid program py-5 bg-white">
                     <div className="container py-5">
@@ -94,7 +93,7 @@ export default function Home() {
                         </div>
 
                         {/* Sorting Dropdown */}
-                        <div className="d-flex justify-content-end mb-4">
+                        {/* <div className="d-flex justify-content-end mb-4">
                             <div className="dropdown">
                                 <button
                                     className="btn btn-outline-secondary dropdown-toggle"
@@ -107,23 +106,17 @@ export default function Home() {
                                 </button>
                                 <ul className="dropdown-menu" aria-labelledby="sortDropdown">
                                     <li>
-                                        <a className="dropdown-item" href="#">
-                                            Best Selling
-                                        </a>
+                                        <a className="dropdown-item" href="#">Best Selling</a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="#">
-                                            Price: Low to High
-                                        </a>
+                                        <a className="dropdown-item" href="#">Price: Low to High</a>
                                     </li>
                                     <li>
-                                        <a className="dropdown-item" href="#">
-                                            Price: High to Low
-                                        </a>
+                                        <a className="dropdown-item" href="#">Price: High to Low</a>
                                     </li>
                                 </ul>
                             </div>
-                        </div>
+                        </div> */}
 
                         {/* Product Grid with WOW Animation */}
                         <div className="row g-4 justify-content-center">
@@ -137,12 +130,15 @@ export default function Home() {
                                         <div className="card h-100 border-0 shadow-sm">
                                             <Link to={`/products/${item._id}`} className="text-decoration-none">
                                                 {/* Product Image with Hover Effect */}
-                                                <div className="card-img-top overflow-hidden" style={{ height: "300px" }}>
+                                                <div className="card-img-top overflow-hidden">
                                                     <img
                                                         src={item.imageUrl}
-                                                        className="img-fluid w-100 h-100 product-image"
+                                                        className="img-fluid w-100 product-image"
                                                         alt={item.name}
-                                                        style={{ objectFit: "cover" }}
+                                                        style={{
+                                                            maxHeight: "250px",
+                                                            objectFit: "cover",
+                                                        }}
                                                     />
                                                 </div>
 
@@ -153,10 +149,13 @@ export default function Home() {
                                                         <span className="text-warning">
                                                             {"★".repeat(Math.round(item?.attributes?.rating || 5))}
                                                         </span>
-                                                        <span className="ms-2 text-muted">No review</span>
+                                                        {/* <span className="ms-2 text-muted">No review</span> */}
                                                     </div>
                                                     <p className="text-muted mb-1">
-                                                        <strong>Size : </strong>{Array.isArray(item?.attributes?.size) ? item?.attributes?.size.map(size => `${size}`).join(" . ") : " 6M, 12M, 18M, 2T, 3T, 4T, 5T, 6T"}
+                                                        <strong>Size: </strong>
+                                                        {Array.isArray(item?.attributes?.size)
+                                                            ? item.attributes.size.map((size) => `${size}`).join(" . ")
+                                                            : "6M, 12M, 18M, 2T, 3T, 4T, 5T, 6T"}
                                                     </p>
                                                 </div>
                                             </Link>
@@ -169,16 +168,26 @@ export default function Home() {
                         </div>
                     </div>
 
-                    {/* Add Custom CSS for Hover Effect */}
+                    {/* Add Custom CSS for Hover Effect and Font Size */}
                     <style>
                         {`
-              .product-image {
-                transition: transform 0.3s ease;
-              }
-              .product-image:hover {
-                transform: scale(1.05);
-              }
-            `}
+      .product-image {
+        transition: transform 0.3s ease;
+      }
+      @media (min-width: 768px) {
+        .product-image:hover {
+          transform: scale(1.05); /* Zoom chỉ áp dụng trên desktop/tablet */
+        }
+      }
+      @media (max-width: 576px) {
+        .product-image {
+          max-height: 200px; /* Giảm chiều cao ảnh trên mobile */
+        }
+        .card-title {
+          font-size: 1rem; /* Giảm cỡ chữ tên sản phẩm trên mobile */
+        }
+      }
+    `}
                     </style>
                 </div>
 

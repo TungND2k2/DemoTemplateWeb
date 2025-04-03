@@ -695,3 +695,16 @@ h6,
 }
 
 /*** Footer End ***/
+.image-zoom-wrapper {
+    display: inline-block; /* Đảm bảo wrapper ôm sát ảnh */
+    transition: transform 0.3s ease; /* Animation mượt mà */
+    overflow: hidden; /* Ngăn ảnh tràn ra ngoài khi zoom */
+  }
+  
+  .image-zoom-wrapper:hover {
+    transform: scale(1.1); /* Zoom ảnh khi hover */
+  }
+  
+  .image-zoom-wrapper img {
+    display: block; /* Loại bỏ khoảng trống dưới ảnh */
+  }
