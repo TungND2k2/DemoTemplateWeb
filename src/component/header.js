@@ -74,7 +74,7 @@ export default function Header() {
                     </button>
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav mx-auto">
-                            <a href="/" className="nav-item nav-link active">Home</a>
+                            <a href="/" className="nav-item nav-link">Home</a>
                             <a href="/products" class="nav-item nav-link">Product</a>
                             <a href="/faq" class="nav-item nav-link">FAQ</a>
                             {/* <div class="nav-item dropdown">
