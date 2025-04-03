@@ -10,7 +10,7 @@ const ProductList = () => {
     const { items: payloadCategories } = useSelector((state) => state.categories);
 
     const products = payloadProducts.data;
-    const categories = payloadCategories.data;
+    const categories = payloadCategories.data; 
     console.log(products)
     useEffect(() => {
         dispatch(fetchProducts()); // Gửi action để lấy danh sách sản phẩm khi component mount

@@ -1,20 +1,26 @@
 import { useEffect, useState } from "react";
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom'; // Added useLocation
 import { useDispatch } from 'react-redux';
 import { fetchProductById } from '../redux/slices/product';
 
 const ProductDetail = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
+  const location = useLocation(); // Added to detect route changes
   const [productState, setProduct] = useState(null);
   const [selectedImage, setSelectedImage] = useState(null);
+
+  // Scroll to top on route change
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, [location.pathname]); // Trigger on route change
 
   useEffect(() => {
     dispatch(fetchProductById(id))
       .unwrap()
       .then((data) => {
         setProduct(data);
-        setSelectedImage(data?.data?.imageUrl); // Set default image
+        setSelectedImage(data?.data?.imageUrl);
       })
       .catch((err) => console.error("Lỗi khi tải sản phẩm:", err));
   }, [dispatch, id]);
@@ -31,9 +37,19 @@ const ProductDetail = () => {
   }
 
   const product = productState?.data;
-  const imageUrls = product?.images || [product?.imageUrl]; // Use images array, fallback to imageUrl
-  console.log(imageUrls)
-  console.log(product)
+  const imageUrls = product?.images || [product?.imageUrl];
+
+  // Check if the product is deleted
+  if (product?.isDeleted) {
+    return (
+      <div className="container py-5 text-center">
+        <p className="text-muted">This product is no longer available.</p>
+        <Link to="/" className="btn btn-primary">
+          Back to Home
+        </Link>
+      </div>
+    );
+  }
 
   return (
     <section className="product-detail section-padding py-5 bg-white">

@@ -151,12 +151,12 @@ export default function Home() {
                                                     <h5 className="card-title text-dark">{item.name}</h5>
                                                     <div className="d-flex align-items-center mb-2">
                                                         <span className="text-warning">
-                                                            {"★".repeat(Math.round(item.rating || 5))}
+                                                            {"★".repeat(Math.round(item?.attributes?.rating || 5))}
                                                         </span>
                                                         <span className="ms-2 text-muted">No review</span>
                                                     </div>
                                                     <p className="text-muted mb-1">
-                                                        <strong>Size:</strong> 6M, 12M, 18M, 2T, 3T, 4T, 5T, 6T
+                                                        <strong>Size : </strong>{Array.isArray(item?.attributes?.size) ? item?.attributes?.size.map(size => `${size}`).join(" . ") : " 6M, 12M, 18M, 2T, 3T, 4T, 5T, 6T"}
                                                     </p>
                                                 </div>
                                             </Link>
