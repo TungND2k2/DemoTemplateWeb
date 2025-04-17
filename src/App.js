@@ -18,10 +18,10 @@ import CreateBlog from './page/blog/createBlog';
 const ProtectedRoute = ({ element }) => {
   const user = localStorage.getItem("user");
   const token = localStorage.getItem("token");
-  const admin = localStorage.getItem("admin"); // Lấy quyền admin từ localStorage
+  // const admin = localStorage.getItem("admin"); // Lấy quyền admin từ localStorage
 
   // Chỉ cho phép truy cập nếu có user, token và admin === "true"
-  return user && token && admin === "true" ? element : <Navigate to="/login" replace />;
+  return user && token  ? element : <Navigate to="/login" replace />;
 };
 
 
@@ -34,11 +34,11 @@ function App() {
         <Route path="/products/:id" element={<ProductDetail />} />
         {/* Trang admin được bảo vệ bởi ProtectedRoute */}
         <Route path="/admin" element={<ProtectedRoute element={<AdminHomePage />} />} />
-        <Route path="/blogs-create" element={<ProtectedRoute element={<CreateBlog />} />} />
+        {/* <Route path="/blogs-create" element={<ProtectedRoute element={<CreateBlog />} />} /> */}
         <Route path="/products" element={<ProductList />} />
         <Route path="/faq" element={<Faq />} />
-        {/* <Route path="/blogs" element={<BlogPage />} />
-        <Route path="/blogs/:id" element={<BlogDetail />} /> */}
+        <Route path="/blogs" element={<BlogPage />} />
+        {/* <Route path="/blogs/:id" element={<BlogDetail />} /> */}
         <Route path="/fabrics" element={<FabricPage />} />
         <Route path="/fabrics/:id" element={<FabricDetail />} />
         <Route path="/login" element={<Login />} />

@@ -12,7 +12,7 @@ export default function Header() {
         localStorage.removeItem('user');
         localStorage.removeItem('token');
         localStorage.removeItem('admin');
-        navigate('/home');
+        navigate('/');
     };
 
     return (
@@ -47,7 +47,7 @@ export default function Header() {
                         >
                             <i className="fab fa-instagram text-secondary"></i>
                         </a>
-                        {admin === 'true' && isLoggedIn ? (
+                        {isLoggedIn ? (
                             <>
                                 <Link
                                     to="/admin"
