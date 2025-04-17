@@ -1,69 +1,121 @@
-
 export default function Footer() {
     return (
-        <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="footer-item">
-                            <h2 class="fw-bold mb-3"><span class="text-primary mb-0">Baby</span><span
-                                class="text-secondary">Smocks</span></h2>
-                            <p class="mb-4">We offer cute, soft, and comfortable smocked outfits for your little ones. Crafted with delicate designs and safe materials, our products ensure your baby stays stylish and cozy throughout the day.</p>
-                            {/* <div class="border border-primary p-3 rounded bg-light"> */}
-                                {/* <h5 class="mb-3">Newsletter</h5>
-                                <div className="position-relative mx-auto border border-primary rounded"
-                                    style={{ maxWidth: '400px' }}>
-                                    <input class="form-control border-0 w-100 py-3 ps-4 pe-5" type="text"
-                                        placeholder="Your email" />
-                                    <button type="button"
-                                        class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2 text-white">SignUp</button>
-                                </div> */}
-                            {/* </div> */}
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="footer-item">
-                            <div className="d-flex flex-column p-4 ps-5 text-dark border border-primary"
-                                style={{ borderRadius: '50% 20% / 10% 40%' }}>
-                                <p>Monday: 8am to 5pm</p>
-                                <p>Tuesday: 8am to 5pm</p>
-                                <p>Wednes: 8am to 5pm</p>
-                                <p>Thursday: 8am to 5pm</p>
-                                <p>Friday: 8am to 5pm</p>
-                                <p>Saturday: 8am to 5pm</p>
-                                <p class="mb-0">Sunday: 8am to 5pm</p>
+        <div className="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.1s">
+            <div className="container py-5">
+                <div className="row g-5">
+                    {/* Left Column: Contact Info and Social Media (1/4 width) */}
+                    <div className="col-lg-3">
+                        <div className="footer-item">
+                            <h2 className="fw-bold mb-3">
+                                <span className="text-primary">Peptit Elegance</span>
+                                {/* <sup className="text-secondary">®</sup> */}
+                                {/* <span className="text-secondary"> SINCE 2007</span> */}
+                            </h2>
+                            <p className="mb-2">
+                                <strong>PHONE:</strong> 84 877336320
+                            </p>
+                            <p className="mb-4">
+                                <strong>EMAIL:</strong> peptitelegance@gmail.com
+                            </p>
+                            <div className="footer-icon d-flex">
+                                <a
+                                    className="btn btn-primary btn-sm-square me-3 rounded-circle text-white"
+                                    href="https://web.facebook.com"
+                                >
+                                    <i className="fab fa-facebook-f"></i>
+                                </a>
+                                <a
+                                    className="btn btn-primary btn-sm-square me-3 rounded-circle text-white"
+                                    href="https://www.instagram.com"
+                                >
+                                    <i className="fab fa-instagram"></i>
+                                </a>
+                                <a
+                                    className="btn btn-primary btn-sm-square me-3 rounded-circle text-white"
+                                    href="https://www.youtube.com"
+                                >
+                                    <i className="fab fa-youtube"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-6 col-lg-4 col-xl-3">
-                        <div class="footer-item">
-                            <h4
-                                class="text-primary mb-4 border-bottom border-primary border-2 d-inline-block p-2 title-border-radius">
-                                LOCATION</h4>
-                            <div class="d-flex flex-column align-items-start">
-                                <a href="" class="text-body mb-4"><i class="fa fa-map-marker-alt text-primary me-2"></i>41 Le Hong Phong, phuong Doi Can, Ha Nọi</a>
-                                <a href="" class="text-start rounded-0 text-body mb-4"><i
-                                    class="fa fa-phone-alt text-primary me-2"></i>+84 877336320</a>
-                                <a href="" class="text-start rounded-0 text-body mb-4"><i
-                                    class="fas fa-envelope text-primary me-2"></i>peptitelegance@gmail.com</a>
-                                <a href="" class="text-start rounded-0 text-body mb-4"><i
-                                    class="fa fa-clock text-primary me-2"></i> 24/7 Hours Service</a>
-                                <div class="footer-icon d-flex">
-                                    <a class="btn btn-primary btn-sm-square me-3 rounded-circle text-white" href="https://web.facebook.com/people/Peptit-Elegance-Smock-Wholesales-Factory/61567181037933/"><i
-                                        class="fab fa-facebook-f"></i></a>
-                                    {/* <a class="btn btn-primary btn-sm-square me-3 rounded-circle text-white" href=""><i
-                                        class="fab fa-twitter"></i></a> */}
-                                    <a href="https://www.instagram.com/peptelegance/profilecard/" class="btn btn-primary btn-sm-square me-3 rounded-circle text-white"><i
-                                        class="fab fa-instagram"></i></a>
-                                    {/* <a href="#" class="btn btn-primary btn-sm-square rounded-circle text-white"><i
-                                        class="fab fa-linkedin-in"></i></a> */}
+
+                    {/* Right Column: Other Sections (3/4 width) */}
+                    <div className="col-lg-9">
+                        {/* First Row: Company, Support, Account */}
+                        <div className="row g-5">
+                            <div className="col-md-4">
+                                <div className="footer-item">
+                                    <h4 className="text-primary mb-4">COMPANY</h4>
+                                    <div className="d-flex flex-column">
+                                        <a href="" className="text-body mb-2">Our Story</a>
+                                        <a href="" className="text-body mb-2">Location</a>
+                                        <a href="" className="text-body mb-2">Contact Us</a>
+                                        <a href="" className="text-body mb-2">About us</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="footer-item">
+                                    <h4 className="text-primary mb-4">SUPPORT</h4>
+                                    <div className="d-flex flex-column">
+                                        <a href="" className="text-body mb-2">Shipping Quotation</a>
+                                        <a href="" className="text-body mb-2">Privacy Policy</a>
+                                        <a href="" className="text-body mb-2">FAQS</a>
+                                        <a href="" className="text-body mb-2">Payment Option</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="footer-item">
+                                    <h4 className="text-primary mb-4">ACCOUNT</h4>
+                                    <div className="d-flex flex-column">
+                                        <a href="" className="text-body mb-2">Checkout</a>
+                                        <a href="" className="text-body mb-2">My Wishlist</a>
+                                        <a href="" className="text-body mb-2">Shopping Cart</a>
+                                        <a href="" className="text-body mb-2">My Account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        {/* Second Row: Babeeni Foundation, Our Brand, Payment Methods */}
+                        <div className="row g-5 mt-3">
+                            <div className="col-md-4">
+                                <div className="footer-item">
+                                    <h4 className="text-primary mb-4">FOUNDATION</h4>
+                                    <div className="d-flex flex-column">
+                                        <a href="" className="text-body mb-2">Charity Events</a>
+                                        <a href="" className="text-body mb-2">Activity</a>
+                                        <a href="" className="text-body mb-2">General Information</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="footer-item">
+                                    <h4 className="text-primary mb-4">OUR BRAND</h4>
+                                    <div className="d-flex flex-column">
+                                        <a href="" className="text-body mb-2">Babeeni</a>
+                                        <a href="" className="text-body mb-2">Lewee</a>
+                                        <a href="" className="text-body mb-2">Babeenioverstock</a>
+                                        <a href="" className="text-body mb-2">Marry Le</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="footer-item">
+                                    <h4 className="text-primary mb-4">PAYMENT METHODS</h4>
+                                    <div className="d-flex flex-column">
+                                        <p className="text-body mb-2">VISA</p>
+                                        <p className="text-body mb-2">Mastercard</p>
+                                        <p className="text-body mb-2">Bank wire transfer, PayPal</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div >
+        </div>
     );
-};
-
+}

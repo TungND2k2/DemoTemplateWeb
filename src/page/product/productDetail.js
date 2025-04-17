@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, Link, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { fetchProductById } from '../redux/slices/product';
+import { fetchProductById } from '../../redux/slices/product';
 
 const ProductDetail = () => {
   const dispatch = useDispatch();

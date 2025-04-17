@@ -1,38 +1,38 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// Thunk để lấy danh sách catalogs
-export const fetchCatalogs = createAsyncThunk(
-    "catalogs/fetchCatalogs",
+// Thunk để lấy danh sách blogs
+export const fetchBlogs = createAsyncThunk(
+    "blogs/fetchBlogs",
     async (_, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/catalogs`);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/blogs`);
             return response.data;
         } catch (error) {
-            return rejectWithValue(error.response?.data || "Lỗi khi lấy danh sách catalogs");
+            return rejectWithValue(error.response?.data || "Lỗi khi lấy danh sách blogs");
         }
     }
 );
 
-// Thunk để lấy danh sách catalogs
-export const fetchCatalogsFindOne = createAsyncThunk(
-    "catalogs/fetchCatalogsFindOne",
+// Thunk để lấy danh sách 
+export const fetchBlogsFindOne = createAsyncThunk(
+    "blogs/fetchBlogsFindOne",
     async (id, { rejectWithValue }) => {
         try {
-            const response = await axios.get(`${process.env.REACT_APP_API_URL}/catalogs/` + id);
+            const response = await axios.get(`${process.env.REACT_APP_API_URL}/blogs/` + id);
             return response.data;
         } catch (error) {
-            return rejectWithValue(error.response?.data || "Lỗi khi lấy danh sách catalogs");
+            return rejectWithValue(error.response?.data || "Lỗi khi lấy danh sách blogs");
         }
     }
 );
 
 // Thunk để cập nhật catalog theo ID
-export const fetchCatalogsUpdateById = createAsyncThunk(
-    "catalogs/fetchCatalogsUpdateById",
+export const fetchBlogsUpdateById = createAsyncThunk(
+    "blogs/fetchBlogsUpdateById",
     async ({ id, data }, { rejectWithValue }) => {
         try {
-            const url = `${process.env.REACT_APP_API_URL}/catalogs/${id}`;
+            const url = `${process.env.REACT_APP_API_URL}/blogs/${id}`;
             const token = localStorage.getItem("token");
 
             const response = await axios.patch(url, data, {
@@ -48,11 +48,11 @@ export const fetchCatalogsUpdateById = createAsyncThunk(
     }
 );
 
-export const fetchCatalogsCreate = createAsyncThunk(
-    "catalogs/fetchCatalogsCreate",
+export const fetchBlogsCreate = createAsyncThunk(
+    "blogs/fetchBlogsCreate",
     async (data, { rejectWithValue }) => {
         try {
-            const url = `${process.env.REACT_APP_API_URL}/catalogs`;
+            const url = `${process.env.REACT_APP_API_URL}/blogs`;
             const token = localStorage.getItem("token");
             const response = await axios.post(url, data, {
                 headers: {
@@ -67,11 +67,11 @@ export const fetchCatalogsCreate = createAsyncThunk(
     }
 );
 
-export const fetchCatalogsDeleteById = createAsyncThunk(
-    "catalogs/fetchCatalogsDeleteById",
+export const fetchBlogsDeleteById = createAsyncThunk(
+    "blogs/fetchBlogsDeleteById",
     async (id, { rejectWithValue }) => {
         try {
-            const url = process.env.REACT_APP_API_URL + `/catalogs/${id}`;
+            const url = process.env.REACT_APP_API_URL + `/blogs/${id}`;
             const token = localStorage.getItem("token");
             await axios.delete(url, {
                 headers: {
@@ -87,10 +87,10 @@ export const fetchCatalogsDeleteById = createAsyncThunk(
 );
 
 // Thêm vào extraReducers tương tự
-const catalogSlice = createSlice({
-    name: "catalogs",
+const blogsSlice = createSlice({
+    name: "blogs",
     initialState: {
-        items: [], // Danh sách catalogs
+        items: [], // Danh sách blogs
         selectedCatalog: null, // Catalog được chọn (sửa từ selectedCatalogs)
         status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
         error: null,
@@ -99,62 +99,62 @@ const catalogSlice = createSlice({
     extraReducers: (builder) => {
         builder
             // Xử lý fetchCatalogs
-            .addCase(fetchCatalogs.pending, (state) => {
+            .addCase(fetchBlogs.pending, (state) => {
                 state.status = "loading";
                 state.error = null; // Reset error khi bắt đầu fetch
             })
-            .addCase(fetchCatalogs.fulfilled, (state, action) => {
+            .addCase(fetchBlogs.fulfilled, (state, action) => {
                 state.status = "succeeded";
-                state.items = action.payload; // Lưu danh sách catalogs
+                state.items = action.payload; // Lưu danh sách blogs
             })
-            .addCase(fetchCatalogs.rejected, (state, action) => {
+            .addCase(fetchBlogs.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload;
             })
             // Xử lý fetchCatalogsUpdateById
-            .addCase(fetchCatalogsUpdateById.pending, (state) => {
+            .addCase(fetchBlogsUpdateById.pending, (state) => {
                 state.status = "loading";
                 state.error = null; // Reset error khi bắt đầu update
             })
-            .addCase(fetchCatalogsUpdateById.fulfilled, (state, action) => {
+            .addCase(fetchBlogsUpdateById.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.selectedCatalog = action.payload; // Lưu catalog đã cập nhật
                 // Cập nhật danh sách items nếu cần
             })
-            .addCase(fetchCatalogsUpdateById.rejected, (state, action) => {
+            .addCase(fetchBlogsUpdateById.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload;
             })
-            .addCase(fetchCatalogsCreate.pending, (state) => {
+            .addCase(fetchBlogsCreate.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(fetchCatalogsCreate.fulfilled, (state, action) => {
+            .addCase(fetchBlogsCreate.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.items.data.push(action.payload); // Thêm sản phẩm mới vào danh sách
             })
-            .addCase(fetchCatalogsCreate.rejected, (state, action) => {
+            .addCase(fetchBlogsCreate.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload;
             })
-            .addCase(fetchCatalogsDeleteById.pending, (state) => {
+            .addCase(fetchBlogsDeleteById.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(fetchCatalogsDeleteById.fulfilled, (state, action) => {
+            .addCase(fetchBlogsDeleteById.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.items.data.push(action.payload); // Thêm sản phẩm mới vào danh sách
             })
-            .addCase(fetchCatalogsDeleteById.rejected, (state, action) => {
+            .addCase(fetchBlogsDeleteById.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload;
             })
-            .addCase(fetchCatalogsFindOne.pending, (state) => {
+            .addCase(fetchBlogsFindOne.pending, (state) => {
                 state.status = "loading";
             })
-            .addCase(fetchCatalogsFindOne.fulfilled, (state, action) => {
+            .addCase(fetchBlogsFindOne.fulfilled, (state, action) => {
                 state.status = "succeeded";
                 state.selectedCatalog = action.payload;
             })
-            .addCase(fetchCatalogsFindOne.rejected, (state, action) => {
+            .addCase(fetchBlogsFindOne.rejected, (state, action) => {
                 state.status = "failed";
                 state.error = action.payload;
             })
@@ -162,4 +162,4 @@ const catalogSlice = createSlice({
     },
 });
 
-export default catalogSlice.reducer;
+export default blogsSlice.reducer;
